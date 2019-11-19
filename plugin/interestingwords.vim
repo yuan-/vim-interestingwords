@@ -268,3 +268,8 @@ if g:interestingWordsDefaultMappings
    catch /E227/
    endtry
 endif
+function rebuildColor()
+  let s:hasBuiltColors = 1
+  call s:buildColors()
+endfunction
+autocmd Syntax,ColorScheme * call <SID>rebuildColor()
