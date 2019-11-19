@@ -269,7 +269,15 @@ if g:interestingWordsDefaultMappings
    endtry
 endif
 function! s:rebuildColor()
-  let s:hasBuiltColors = 1
-  call s:buildColors()
+  if (!s:hasBuiltColors)
+    return
+  endif
+  let ui = s:uiMode()
+  let wordColors = (ui == 'gui') ? g:interestingWordsGUIColors : g:interestingWordsTermColors
+  let currentIndex = 1
+  for wordColor in wordColors
+    execute 'hi! def InterestingWord' . currentIndex . ' ' . ui . 'bg=' . wordColor . ' ' . ui . 'fg=Black'
+    let currentIndex += 1
+  endfor
 endfunction
 autocmd Syntax,ColorScheme * call <SID>rebuildColor()
