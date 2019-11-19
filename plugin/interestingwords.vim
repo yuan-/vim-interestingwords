@@ -268,7 +268,7 @@ if g:interestingWordsDefaultMappings
    catch /E227/
    endtry
 endif
-function rebuildColor()
+function! s:rebuildColor()
   let s:hasBuiltColors = 1
   call s:buildColors()
 endfunction
